@@ -21,3 +21,4 @@ Kanonov algoritam je distriburiani agoritam za množenje dvodimenzionih matrica.
 
 ![image](https://user-images.githubusercontent.com/70920836/179054881-4f32db86-e1ee-4d53-812d-13e9c3873cf0.png)
 
+
