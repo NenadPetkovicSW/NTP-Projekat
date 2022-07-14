@@ -1,5 +1,6 @@
-# NTP Projekat
-Odabrani projekat je predefinisani projekat - Kanonov algoritam za množenje matrica 
+# Kanonov algoritam za množenje matrica - NTP Projekat
+
+Odabran je predefinisani projekat - Kanonov algoritam za množenje matrica 
 
 ## Student
 SW-37/2018 Nenad Petković
@@ -9,6 +10,7 @@ SW-37/2018 Nenad Petković
 Kanonov algoritam je distriburiani agoritam za množenje dvodimenzionih matrica. Glavna prednost ovog algoritma je što zahtevi za skladištenje ostaju konstantni i nezavisni od boja procesa.
 
 ## Kanonov algoritam 
+
 1. Posmatramo dve n × n matrice A i B podeljene na p blokova.
 2. A(i, j) i B(i, j) (0 ≤ i,j ≤ √p) veličine (n ∕ √p)×(n ∕ √p) svaki.
 3. Proces P(i, j) u početku skladišti A(i, j), a B(i, j) izračunava blok C(i, j) matrice rezultata.
@@ -21,3 +23,14 @@ Kanonov algoritam je distriburiani agoritam za množenje dvodimenzionih matrica.
 
 ![image](https://user-images.githubusercontent.com/70920836/179054881-4f32db86-e1ee-4d53-812d-13e9c3873cf0.png)
 
+## Sekvencijalna implementacija algoritma
+
+Pre iteracionog procesa izvršava se inicijalni šift matrica A i B. Zatim, u narednih p iteracija se množe matrice A i B, a rezultat dodaje u matricu C. Na kraju svake iteracije matrice A i B se šiftuju za 1 korak. Konačni rezultat je matrica C (C = A x B).
+
+## Implementacija algoritama i tehnologije koje se korsite
+
+Algoritam će biti implentiran paralelno i sekvencijalno u Golang-u i Python-u. Vršiće se slabo i jako skaliranje tako što će se meriti srednje vreme izvršavanja algoritma (u svim slučajevima). U Python-u će se koristiti navedena biblioteka multiprocessing.
+
+## Vizualizacija rešenja
+
+Svaka iteracija sekvencijalnog rešenja i svaki proces paralelnog rešenja biće vizualizovani.
