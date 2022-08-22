@@ -110,8 +110,9 @@ def start():
                 print("Sqrt(p) can't divide n!\n")
             else:
                 break
+        processors = insert_number("Insert number of processors: ")
         sequential_cannon.multiplication_sequential_like_parallel(copy.deepcopy(matrix1), copy.deepcopy(matrix2), n, p)
-        parallel_cannon.multiplication_parallel(copy.deepcopy(matrix1), copy.deepcopy(matrix2), n, p)
+        parallel_cannon.multiplication_parallel(copy.deepcopy(matrix1), copy.deepcopy(matrix2), n, p, processors)
 
         break
 

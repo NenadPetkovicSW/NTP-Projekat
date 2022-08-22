@@ -77,9 +77,10 @@ def add_result(thread, result, n_p_sqrt):
     return result
 
 
-def multiplication_parallel(matrix_1, matrix_2, n, p):
+def multiplication_parallel(matrix_1, matrix_2, n, p, processors):
     """
     This function is used for parallel multiplication using Cannon’s algorithm...
+    :param processors:
     :param matrix_1:
     :param matrix_2:
     :param n:
@@ -90,12 +91,14 @@ def multiplication_parallel(matrix_1, matrix_2, n, p):
 
     start_time = time.time()
 
+    # serial_time = time.time()
     result = np.zeros((n, n))
 
-    pool = mp.Pool(mp.cpu_count())
+    pool = mp.Pool(processors)
 
+    # serial_time_count = time.time() - serial_time
     matrix_1, matrix_2 = pool.apply_async(shift, args=(matrix_1, matrix_2, n, 2)).get()
-
+    serial_time = time.time()
     threads = []
     p_sqrt = int(sqrt(p))
     n_p_sqrt = int(n / p_sqrt)
@@ -107,12 +110,15 @@ def multiplication_parallel(matrix_1, matrix_2, n, p):
                 m1 = matrix_1[row_number:(row_number + n_p_sqrt), colon_number:(colon_number + n_p_sqrt)]
                 m2 = matrix_2[row_number:(row_number + n_p_sqrt), colon_number:(colon_number + n_p_sqrt)]
 
+                # serial_time_count = serial_time_count + (time.time() - serial_time)
                 threads.append(pool.apply_async(multiplication, args=(m1, m2, row_number, colon_number)))
                 matrix_1, matrix_2 = pool.apply_async(shift, args=(matrix_1, matrix_2, n, 1)).get()
+                # serial_time = time.time()
 
     for thread in threads:
         result = add_result(thread.get(), result, n_p_sqrt)
 
+    # serial_time_count = serial_time_count + (time.time() - serial_time)
     pool.terminate()
     pool.close()
     pool.join()
@@ -121,3 +127,10 @@ def multiplication_parallel(matrix_1, matrix_2, n, p):
     elapsed_time = end_time - start_time
 
     print("\nParallel elapsed time: {0}\n".format(str(elapsed_time)))
+
+    # serial_pre = (serial_time_count * (100 / elapsed_time)) / 100
+    # print("\nParallel serial time: {0}\n".format(str(serial_pre)))
+    # #
+    # print("\nParallel parallel time: {0}\n".format(str(1 - serial_pre)))
+    # #
+    # print("\nParallel speedup time: {0}\n".format(str((serial_pre + (1 - serial_pre) * processors))))
