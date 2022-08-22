@@ -29,8 +29,8 @@ Pre iteracionog procesa izvršava se inicijalni šift matrica A i B. Zatim, u na
 
 ## Implementacija algoritama i tehnologije koje se korsite
 
-Algoritam će biti implentiran paralelno i sekvencijalno u Golang-u i Python-u. Vršiće se slabo i jako skaliranje tako što će se meriti srednje vreme izvršavanja algoritma (u svim slučajevima). U Python-u će se koristiti navedena biblioteka multiprocessing.
+Algoritam će biti implentiran paralelno i sekvencijalno u Golang-u i Python-u. Vršiće se slabo i jako skaliranje tako što će se meriti srednje vreme izvršavanja algoritma (u svim slučajevima). U Python-u će se koristiti navedena biblioteka multiprocessing. Sekvencijalno množenje će imitirati paralelno, tako da se rešenja mogu upoređivati.
 
 ## Vizualizacija rešenja
 
-Svaka iteracija sekvencijalnog rešenja i svaki proces paralelnog rešenja biće vizualizovani.
+Svaka iteracija sekvencijalnog rešenja i svaki proces paralelnog rešenja biće vizualizovani pomoću programskog jezika Pharo. 
